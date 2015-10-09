@@ -397,14 +397,20 @@ abstract class BaseColumn extends Object
     {
         $model = $this->getModel();
         if ($model instanceof Model) {
+            
+            $widgetOptionsOptions = [
+                'id' => $this->normalize($name),
+                'name' => $name,
+            ];
+            if(isset($options['options'])){
+                $widgetOptionsOptions = ArrayHelper::merge($options['options'], $widgetOptionsOptions);
+            }
+            
             $widgetOptions = [
                 'model'     => $model,
                 'attribute' => $this->name,
                 'value'     => $value,
-                'options'   => [
-                    'id' => $this->normalize($name),
-                    'name' => $name
-                ]
+                'options'   => $widgetOptionsOptions,
             ];
         } else {
             $widgetOptions = [
