@@ -163,7 +163,7 @@ class TableRenderer extends BaseRenderer
         }
         
         $rowOptions = [
-            'class' => 'multiple-input-list__item' . $class?$class:''
+            'class' => 'multiple-input-list__item' . ($class?' ' . $class:'')
         ];
         
         $rowOptions = ArrayHelper::merge($this->rowOptions, $rowOptions);
@@ -227,10 +227,16 @@ class TableRenderer extends BaseRenderer
             $button = $this->renderRemoveButton();
         } elseif ($index == 0) {
             $button = $this->allowEmptyList ? $this->renderRemoveButton() : $this->renderAddButton();
+        } elseif(isset($this->min)) {
+            if($index >= $this->min){
+                $button = $this->renderRemoveButton();
+            }else{
+                $button = '';
+            }
         } else {
             $button = $this->renderRemoveButton();
         }
-
+        
         return Html::tag('td', $button, [
             'class' => 'list-cell__button',
         ]);

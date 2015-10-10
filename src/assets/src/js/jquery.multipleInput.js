@@ -158,7 +158,7 @@
         removeInput: function () {
             var $wrapper = $(this).closest('.multiple-input').first(),
                 $toDelete = $(this).closest('.multiple-input-list__item');
-
+        
             var event = $.Event(events.beforeDeleteRow);
             $wrapper.trigger(event, [$toDelete]);
             if (event.result === false) {

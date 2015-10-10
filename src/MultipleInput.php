@@ -38,6 +38,11 @@ class MultipleInput extends InputWidget
     public $limit;
 
     /**
+     * @var integer inputs minimal number
+     */
+    public $min;
+
+    /**
      * @var array client-side attribute options, e.g. enableAjaxValidation. You may use this property in case when
      * you use widget without a model, since in this case widget is not able to detect client-side options
      * automatically.
@@ -129,6 +134,7 @@ class MultipleInput extends InputWidget
             'id'                => $this->options['id'],
             'columns'           => $this->columns,
             'limit'             => $this->limit,
+            'min'               => $this->min,
             'attributeOptions'  => $this->attributeOptions,
             'data'              => $this->data,
             'columnClass'       => MultipleInputColumn::className(),

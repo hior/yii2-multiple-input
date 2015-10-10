@@ -48,6 +48,11 @@ abstract class BaseRenderer extends Object
     public $limit;
 
     /**
+     * @var integer inputs min number
+     */
+    public $min;
+
+    /**
      * @var array client-side attribute options, e.g. enableAjaxValidation. You may use this property in case when
      * you use widget without a model, since in this case widget is not able to detect client-side options
      * automatically.
