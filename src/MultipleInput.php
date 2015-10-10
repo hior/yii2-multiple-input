@@ -64,6 +64,10 @@ class MultipleInput extends InputWidget
      */
     public $enableGuessTitle = false;
 
+    /**
+     * @var array table row HTML options
+     */
+    public $rowOptions = "";
 
     /**
      * Initialization.
@@ -129,7 +133,8 @@ class MultipleInput extends InputWidget
             'data'              => $this->data,
             'columnClass'       => MultipleInputColumn::className(),
             'allowEmptyList'    => $this->allowEmptyList,
-            'context'           => $this
+            'context'           => $this,
+            'rowOptions'        => $this->rowOptions,
         ];
 
         if (!is_null($this->removeButtonOptions)) {

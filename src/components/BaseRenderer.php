@@ -73,8 +73,8 @@ abstract class BaseRenderer extends Object
      * @var string
      */
     public $columnClass;
-
-
+    
+    
     /**
      * @var TabularInput|MultipleInput
      */

@@ -84,7 +84,7 @@ class MultipleInputColumn extends BaseColumn
             return false;
         }
     }
-
+    
     public function getFirstError($index)
     {
         $attribute = $this->widget->attribute . $this->getElementName($index, false);

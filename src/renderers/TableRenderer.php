@@ -12,6 +12,7 @@ use yii\base\InvalidConfigException;
 use yii\bootstrap\Button;
 use yii\db\ActiveRecord;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use unclead\widgets\components\BaseRenderer;
 use unclead\widgets\components\BaseColumn;
 
@@ -21,6 +22,12 @@ use unclead\widgets\components\BaseColumn;
  */
 class TableRenderer extends BaseRenderer
 {
+    
+    /**
+     * @var array table row HTML options 
+     */
+    public $rowOptions;
+    
     /**
      * @return mixed
      */
@@ -149,9 +156,19 @@ class TableRenderer extends BaseRenderer
             $cells[0] = preg_replace('/^(<td[^>]+>)(.*)(<\/td>)$/s', '${1}' . $hiddenInputs . '$2$3', $cells[0]);
         }
 
-        $content = Html::tag('tr', implode("\n", $cells), [
-            'class' => 'multiple-input-list__item',
-        ]);
+        if(isset($this->rowOptions) && isset($this->rowOptions['class']) && $this->rowOptions['class']){
+            $class = $this->rowOptions['class'];
+        }else{
+            $class="";
+        }
+        
+        $rowOptions = [
+            'class' => 'multiple-input-list__item' . $class?$class:''
+        ];
+        
+        $rowOptions = ArrayHelper::merge($this->rowOptions, $rowOptions);
+
+        $content = Html::tag('tr', implode("\n", $cells), $rowOptions);
 
         return $content;
     }
