@@ -156,17 +156,19 @@ class TableRenderer extends BaseRenderer
             $cells[0] = preg_replace('/^(<td[^>]+>)(.*)(<\/td>)$/s', '${1}' . $hiddenInputs . '$2$3', $cells[0]);
         }
 
-        if(isset($this->rowOptions) && isset($this->rowOptions['class']) && $this->rowOptions['class']){
-            $class = $this->rowOptions['class'];
-        }else{
-            $class="";
-        }
-        
         $rowOptions = [
-            'class' => 'multiple-input-list__item' . ($class?' ' . $class:'')
+            'class' => 'multiple-input-list__item',
         ];
         
-        $rowOptions = ArrayHelper::merge($this->rowOptions, $rowOptions);
+        $optionProperty = $this->rowOptions;
+        
+        
+        
+        if(isset($index)){
+            $i = $this->data[$index];
+            $options = isset($i->$optionProperty)?$i->$optionProperty:[];
+            $rowOptions = ArrayHelper::merge($options, $rowOptions);
+        }
 
         $content = Html::tag('tr', implode("\n", $cells), $rowOptions);
 
